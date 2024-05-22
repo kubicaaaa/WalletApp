@@ -42,9 +42,9 @@ export default function Transaction() {
       autoComplete="off"
     > 
       <Paper elevation={3} style={paperStyle}>  
-        <h1>Add transaction</h1>
-        <TextField id="outlined-basic" label="Transaction Name" variant="outlined" value={name} onChange={(e)=>setName(e.target.value)} style={{width:'50%'}}  />
-        <TextField id="outlined-basic" label="Transaction Value" variant="outlined" value={amount} onChange={(e)=>setAmount(e.target.value)} style={{width:'50%'}} />
+        <h1>New transaction</h1>
+        <TextField id="outlined-basic" label="What you bought?" variant="outlined" value={name} onChange={(e)=>setName(e.target.value)} style={{width:'50%'}}  />
+        <TextField id="outlined-basic" label="How much you paid?" variant="outlined" value={amount} onChange={(e)=>setAmount(e.target.value)} style={{width:'50%'}} />
         <Button variant="contained" style={{margin: '20px'}} onClick={handleClick}>Create</Button>
       </Paper>
 
@@ -52,8 +52,8 @@ export default function Transaction() {
       <Paper elevation={3} style={paperStyle}>
         {transaction.map(transaction=>(
           <Paper elevation={6} style={{margin:"10px", padding:"15px", textAlign:"left"}} key={transaction.id}>
-          Name: {transaction.name}<br/>
-          Value: {transaction.amount}zł<br/>
+            <b>{transaction.name}</b><br/>
+            {transaction.amount}zł<br/>
           </Paper>
         ))
         }

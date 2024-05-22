@@ -1,7 +1,6 @@
 package com.alex.walletapp.service;
 
 import com.alex.walletapp.model.Transaction;
-
 import java.util.List;
 
 public interface TransactionService {

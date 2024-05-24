@@ -1,6 +1,6 @@
  <h2>WalletApp</h2>
  
- <p>Full Stack Web application built in Java using Spring Boot framework and React.js</p>
+ <p>Full Stack Web application allowing user to track past transactions, adding new and check real-time crypto and stock prices </p>
 
 ![preview](https://github.com/kubicaaaa/WalletApp/assets/136459875/0d6b9962-56c3-4b60-a293-6511f67893dc)
 
@@ -12,10 +12,10 @@
 
 <h2>Used tools and technologies</h2>
 
-<ol>
+<ul>
   <li>Java 17</li>
   <li>Spring Boot 3.2.4</li>
   <li>React.js</li>
   <li>MySQL Connector</li>
   <li>Material UI</li>
-</ol>
+</ul>

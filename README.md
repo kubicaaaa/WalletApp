@@ -9,9 +9,9 @@
 
  User can:
  <ul>
-  <li>View all transactions stored in MySQL database. </li>
-  <li>Add new ones entering what he/she bought and how much money was spent.</li>
-  <li>Track real-time crypto prices</li>
+  <li>View all transactions stored in MySQL database</li>
+  <li>Add new transactions entering what was bought and how much money was spent</li>
+  <li>Track real-time crypto and stock prices</li>
  </ul>
 
 

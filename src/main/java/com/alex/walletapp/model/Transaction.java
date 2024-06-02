@@ -4,50 +4,51 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+
 import java.time.LocalDate;
 
 @Entity
 public class Transaction {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String name;
-    private LocalDate time;
-    private double amount;
+        @Id
+        private int id;
+        private String name;
+        private LocalDate time;
+        private double amount;
 
-    public Transaction() {
-        this.time = LocalDate.now();
-    }
+        public Transaction() {
+                this.time = LocalDate.now();
+        }
 
-    public int getId() {
-        return id;
-    }
+        public int getId() {
+                return id;
+        }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+        public void setId(int id) {
+                this.id = id;
+        }
 
-    public String getName() {
-        return name;
-    }
+        public String getName() {
+                return name;
+        }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+        public void setName(String name) {
+                this.name = name;
+        }
 
-    public LocalDate getTime() {
-        return time;
-    }
+        public LocalDate getTime() {
+                return time;
+        }
 
-    public void setTime() {
-        this.time = LocalDate.now();
-    }
+        public void setTime() {
+                this.time = LocalDate.now();
+        }
 
-    public double getAmount() {
-        return amount;
-    }
+        public double getAmount() {
+                return amount;
+        }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
+        public void setAmount(double amount) {
+                this.amount = amount;
+        }
 }

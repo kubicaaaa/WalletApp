@@ -18,21 +18,39 @@ export default function Transaction() {
   const [ethPrice, setEthPrice] = React.useState(null);
   const [solPrice, setSolPrice] = React.useState(null);
 
-  const addClick = (e) => {
+  const addTransaction = (e) => {
     e.preventDefault();
     const transaction = { name, amount };
     console.log(transaction);
-    fetch("http://localhost:8080/transaction/add", {
+    fetch("http://localhost:8080/wallet/transaction", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(transaction)
     }).then(() => {
       console.log("New transaction added.");
+      window.location.reload();
     });
   };
 
+  function deleteTransaction(id) {
+    fetch(`http://localhost:8080/wallet/transaction/${id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error ${response.status}`);
+        }
+        console.log("Transaction removed.");
+        window.location.reload();
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      });
+  }
+
   React.useEffect(() => {
-    fetch("http://localhost:8080/transaction/getAll")
+    fetch("http://localhost:8080/wallet/transaction")
       .then(res => res.json())
       .then((result) => {
         setTransactions(result);
@@ -65,15 +83,15 @@ export default function Transaction() {
         <Icon name="btc" size={16} /> <b>BTC {btcPrice ? parseFloat(btcPrice).toFixed(2) : 'Loading...'}$</b> <br />
         <Icon name="eth" size={16} /> <b>ETH {ethPrice ? parseFloat(ethPrice).toFixed(2) : 'Loading...'}$</b> <br />
         <Icon name="sol" size={16} /> <b>SOL {solPrice ? parseFloat(solPrice).toFixed(2) : 'Loading...'}$</b> <br />
-        <MdAttachMoney style={{ color: '#FFD700', fontSize: '1rem' }} /> <b>GOLD {solPrice ? parseFloat(solPrice).toFixed(2) : 'Loading...'}$</b> <br />
-        <MdAttachMoney style={{ color: '#C0C0C0', fontSize: '1rem' }} /> <b>SILVER {solPrice ? parseFloat(solPrice).toFixed(2) : 'Loading...'}$</b> <br />
+        <MdAttachMoney style={{ color: '#FFD700', fontSize: '1rem' }} /> <b>GOLD {  'Loading...'}$</b> <br />
+        <MdAttachMoney style={{ color: '#C0C0C0', fontSize: '1rem' }} /> <b>SILVER { 'Loading...'}$</b> <br />
       </Paper>
 
       <Paper elevation={3} style={paperStyle}>
         <h1>New transaction</h1>
         <TextField id="outlined-basic" label="What you bought?" variant="outlined" value={name} onChange={(e) => setName(e.target.value)} style={{ width: '50%' }} />
         <TextField id="outlined-basic" label="How much you paid?" variant="outlined" value={amount} onChange={(e) => setAmount(e.target.value)} style={{ width: '50%' }} />
-        <Button variant="contained" style={{ margin: '20px' }} onClick={addClick}>Create</Button>
+        <Button variant="contained" style={{ margin: '20px' }} onClick={addTransaction}>Create</Button>
       </Paper>
 
       <Paper elevation={3} style={paperStyle}>
@@ -82,6 +100,7 @@ export default function Transaction() {
           <Paper elevation={6} style={{ margin: "10px", padding: "15px", textAlign: "left" }} key={transaction.id}>
             <b>{transaction.name}</b><br />
             {transaction.amount}zł<br />
+            <Button variant="contained" style={{ margin: '20px' }} onClick={() => deleteTransaction(transaction.id)}>Remove</Button>
           </Paper>
         ))}
       </Paper>

@@ -21,6 +21,7 @@
 <ul>
   <li>Java 17</li>
   <li>Spring Boot 3.2.4</li>
+  <li>Spring Data JPA</li>
   <li>React.js</li>
   <li>MySQL Connector</li>
   <li>Material UI</li>
